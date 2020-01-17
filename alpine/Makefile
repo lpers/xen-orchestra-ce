@@ -4,6 +4,11 @@
 # Get current xo component versions
 XOSERVER := $(shell git ls-remote --tags --sort="v:refname" https://github.com/vatesfr/xen-orchestra.git | grep "xo-server-v" | tail -1 | cut -f2 | sed -rn "s/.*v//p")
 XOWEB := $(shell git ls-remote --tags --sort="v:refname" https://github.com/vatesfr/xen-orchestra.git | grep "xo-web-v" | tail -1 | cut -f2 | sed -rn "s/.*v//p")
+
+# from files package.json
+# XOSERVER := $(shell grep version xo-server/package.json | cut -f2 -d: | sed 's/ "\(.*\)",/\1/')
+# XOWEB := $(shell grep version xo-web/package.json | cut -f2 -d: | sed 's/ "\(.*\)",/\1/')
+
 #
 ## If not defined used major xo-server version for global version
 VERSION ?= $(shell echo $(XOSERVER) | sed -rn 's/([[:digit:]]+\.[[:digit:]]+)\..*/\1/p')
