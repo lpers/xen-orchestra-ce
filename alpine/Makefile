@@ -26,10 +26,10 @@ mrproper:
 
 build:
 	docker build \
-		-t $(NAME):$(VERSION) \
-		--label "version=$(VERSION)" \
-		--label "xo-server=$(XOSERVER)" \
-		--label "xo-web=$(XOWEB)" .
+    --build-arg VERSION=$(VERSION)   \
+    --build-arg XOSERVER=$(XOSERVER) \
+    --build-arg XOWEB=$(XOWEB)       \
+		-t $(NAME):$(VERSION) .
 
 push:
 	docker push $(NAME):$(VERSION)
